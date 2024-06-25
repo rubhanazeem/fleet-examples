@@ -1,0 +1,24 @@
+targetCustomizations:
+- name: test
+  helm:
+    chart: config-chart
+    values:
+      name: global.fleet.clusterLabels.management.cattle.io/cluster-display-name
+    valuesFiles:
+      - values.yaml
+    namespace: my-custom-namespace
+  clusterSelector:
+    matchLabels:
+      env: test
+
+- name: prod
+  helm:
+    chart: config-chart
+    values:
+      name: global.fleet.clusterLabels.management.cattle.io/cluster-display-name-prod
+    valuesFiles:
+      - values.yaml
+    namespace: my-custom-namespace
+  clusterSelector:
+    matchLabels:
+      name: local
